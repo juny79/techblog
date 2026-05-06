@@ -1,0 +1,87 @@
+blog:
+  posts_per_day: 2
+  min_word_count: 1500
+  target_word_count: 2500
+  max_word_count: 5000
+
+  schedule:
+    topic_discovery: "0 6 * * *"     # 매일 06:00
+    content_generation: "0 7 * * *"  # 매일 07:00
+    publishing: "0 9 * * *"          # 매일 09:00
+    analytics: "0 10 * * 1"          # 매주 월요일 10:00
+
+  tistory:
+    visibility: 3        # 0: 비공개, 3: 공개
+    comment_enabled: 1
+    default_category_id: 1
+
+llm:
+  default: openai
+  fallback_order:
+    - openai
+    - anthropic
+  openai:
+    model: gpt-4o
+    max_tokens: 4096
+    temperature: 0.7
+  anthropic:
+    model: claude-3-7-sonnet-20250219
+    max_tokens: 4096
+    temperature: 0.7
+
+agents:
+  topic_discovery:
+    max_retries: 3
+    topics_per_run: 5
+    sources:
+      - github_trending
+      - hacker_news
+      - dev_to
+
+  content_generation:
+    max_retries: 3
+    audience_level: "중급 개발자"
+    language: "ko"
+
+  code_example:
+    max_retries: 5
+    execution_timeout: 30
+    supported_languages:
+      - python
+      - javascript
+      - typescript
+      - java
+      - go
+      - rust
+
+  image_generation:
+    max_retries: 3
+    thumbnail_size: [1200, 628]
+    content_image_size: [800, 450]
+    style: "modern tech illustration, minimal, professional, dark theme"
+
+  seo:
+    max_retries: 2
+    min_readability_score: 60
+    target_keyword_density_min: 1.0
+    target_keyword_density_max: 3.0
+    meta_description_max_length: 160
+
+  quality_review:
+    min_word_count: 1500
+    min_seo_score: 70
+    max_plagiarism_ratio: 0.2
+    required_image_count: 1
+
+  publishing:
+    max_retries: 3
+    retry_delay_seconds: 60
+
+  analytics:
+    collection_delay_hours: 24
+    report_day_of_week: 0  # Monday
+
+monitoring:
+  prometheus_port: 8001
+  log_level: INFO
+  log_format: json
