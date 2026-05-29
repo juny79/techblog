@@ -21,14 +21,11 @@ class Settings(BaseSettings):
     dalle_model: str = "dall-e-3"
     image_storage_path: str = "storage/images"
 
-    # ─── Tistory OAuth 2.0 ───────────────────────────────────────────
-    tistory_app_id: str = ""
-    tistory_secret_key: str = ""
-    tistory_access_token: str = ""
-    tistory_blog_name: str = ""
-    tistory_callback_url: str = "http://localhost:8000/callback"
+    # ─── Tistory (Playwright 브라우저 자동화) ────────────────────────
+    tistory_blog_name: str = ""                              # xxx.tistory.com → xxx
+    tistory_session_file: str = "storage/tistory_session.json"  # 세션 저장 경로
     tistory_default_category_id: int = 1
-    tistory_visibility: int = 3      # 0: 비공개, 3: 공개
+    tistory_visibility: int = 0      # 0: 비공개, 3: 공개  ← 테스트 시 0 권장
 
     # ─── Database ────────────────────────────────────────────────────
     database_url: str = "postgresql+asyncpg://techblog:password@localhost:5432/techblog"

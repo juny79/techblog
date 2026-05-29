@@ -39,6 +39,9 @@ pillow>=10.3.0
 markdown2>=2.4.13
 mistune>=3.0.2
 
+# ─── Browser Automation (Tistory 자동화) ────────────
+playwright>=1.44.0
+
 # ─── Environment ───────────────────────────────────
 python-dotenv>=1.0.1
 
